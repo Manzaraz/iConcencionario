@@ -6,16 +6,34 @@
 //
 
 #import "ViewController.h"
+#include "T_ListaCoches.h"
+#include "T_Coche.h"
 
 @interface ViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    T_ListaCoches concesionario;
+}
+
+@synthesize modeloTextField=_modeloTextField;
+@synthesize kilometrosTextField=_kilometrosTextField;
+@synthesize precioTextField=_precioTextField;
+
+@synthesize navegadorItems=_navegadorItems;
+
+@synthesize modeloLabel=_modeloLabel;
+@synthesize kilometrosLabel=_kilometrosLabel;
+@synthesize precioLabel=_precioLabel;
+@synthesize cocheNumero=_cocheNumero;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    concesionario=inicializarLista(concesionario);
+    
+    _navegadorItems.maximumValue=0;
 }
 
 
