@@ -28,6 +28,11 @@
 @synthesize precioLabel=_precioLabel;
 @synthesize cocheNumero=_cocheNumero;
 
+-(IBAction)edicionFinalizada:(id)sender {
+    [sender resignFirstResponder];
+}
+//-(IBAction)cambiaStepper:(id)sender;
+//-(IBAction)insertarCoche:(id)sender;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
