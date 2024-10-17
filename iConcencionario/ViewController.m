@@ -28,10 +28,33 @@
 @synthesize precioLabel=_precioLabel;
 @synthesize cocheNumero=_cocheNumero;
 
+
 -(IBAction)edicionFinalizada:(id)sender {
     [sender resignFirstResponder];
 }
-//-(IBAction)cambiaStepper:(id)sender;
+
+
+-(IBAction)cambiaStepper:(id)sender {
+    
+    int item=_navegadorItems.value;
+    [self actualizarExplorador: item];
+    
+}
+
+
+-(void) actualizarExplorador: (int) posLista {
+    
+    int item=posLista;
+    
+    T_Coche c = obtenerCoche(concesionario, item);
+    
+    _cocheNumero.text=[NSString stringWithFormat:@"%d", item+1];
+    _modeloLabel.text=[NSString stringWithCString:c.modelo encoding:NSUTF8StringEncoding];
+    _kilometrosLabel.text=[NSString stringWithFormat:@"%.2f", c.kilometros];
+    _precioLabel.text=[NSString stringWithFormat:@"%d", c.precio];
+}
+
+
 //-(IBAction)insertarCoche:(id)sender;
 
 - (void)viewDidLoad {
