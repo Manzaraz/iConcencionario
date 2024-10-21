@@ -34,6 +34,40 @@
 }
 
 
+-(IBAction)insertarCoche:(id)sender {
+    if (numeroCoches(concesionario)<TAM_MAX) {
+        NSString *modelo = _modeloTextField.text;
+        float km = [_kilometrosTextField.text floatValue];
+        int precio = [_precioTextField.text intValue];
+        
+        concesionario = insertarCoche(concesionario, [modelo cStringUsingEncoding:NSUTF8StringEncoding], precio, km);
+        
+        // Borra los campos de texto
+        _modeloTextField.text = @"";
+        _kilometrosTextField.text = @"";
+        _precioTextField.text = @"";
+        
+        // Actualizo el Stepper
+        _navegadorItems.maximumValue = (double)numeroCoches(concesionario) - 1;
+        _navegadorItems.value = _navegadorItems.maximumValue;
+        
+        [self actualizarExplorador:_navegadorItems.maximumValue];
+        
+//         Alerta informativa.
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Muy bien" message:@"Has ingresado un nuevo vehículo al concesionario." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *ok) { }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        // TODO: al usuario le daremos un alerta informativa
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Busca un local más grande" message:@"El cupo máximo de coches en el concesionario está completo." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * ok) { }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+
 -(IBAction)cambiaStepper:(id)sender {
     
     int item=_navegadorItems.value;
@@ -55,7 +89,7 @@
 }
 
 
-//-(IBAction)insertarCoche:(id)sender;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
